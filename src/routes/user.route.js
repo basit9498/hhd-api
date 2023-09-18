@@ -5,5 +5,6 @@ const isAuth = require("../middlewares/isAuth");
 const route = express.Router();
 
 route.get("/me", isAuth, UserController.me);
+route.get("/fb-insights", isAuth, UserController.getInsights);
 
 module.exports = route;

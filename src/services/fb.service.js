@@ -14,4 +14,12 @@ const getFBUserMe = (token) =>
     .then(({ data }) => data)
     .catch((err) => Promise.reject(err.response.data));
 
-module.exports = { getFBLongLiveToken, getFBUserMe };
+const getFBAdAccountInsights = (token) =>
+  httpService
+    .get(
+      `/me/adaccounts/?fields=id,account_id,amount_spent,balance,account_status,currency,insights{clicks,impressions}&access_token=${token}`
+    )
+    .then(({ data }) => data)
+    .catch((err) => Promise.reject(err.response.data));
+
+module.exports = { getFBLongLiveToken, getFBUserMe, getFBAdAccountInsights };

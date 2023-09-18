@@ -12,6 +12,19 @@ const me = async (req, res, next) => {
   }
 };
 
+const getInsights = async (req, res, next) => {
+  try {
+    const adAccountInsights = await FBService.getFBAdAccountInsights(req.token);
+    res.status(200).json({
+      message: "FaceBook user's advertising accounts",
+      data: adAccountInsights,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   me,
+  getInsights,
 };
